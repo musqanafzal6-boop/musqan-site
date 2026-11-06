@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Base styles ---------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-ivory font-body text-charcoal antialiased;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    background-color: #c5a46d;
+    color: #183d35;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+}
+
+/* ---------- Reusable pieces ---------- */
+@layer components {
+  /* Centered page width used by every section */
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Small gold line used as a decorative divider */
+  .gold-line {
+    @apply h-px w-16 bg-gold;
+  }
+
+  /* Small uppercase label above headings */
+  .eyebrow {
+    @apply font-body text-xs font-medium uppercase tracking-[0.3em] text-gold;
+  }
+
+  /* Main button styles */
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-forest px-8 py-3.5 font-body text-sm font-medium uppercase tracking-widest text-ivory transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold hover:text-forest hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-full border border-forest px-8 py-3.5 font-body text-sm font-medium uppercase tracking-widest text-forest transition-all duration-300 hover:-translate-y-0.5 hover:bg-forest hover:text-ivory;
+  }
+}
+
+/* ---------- Scroll reveal animation ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.9s ease-out,
+    transform 0.9s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 0.1s;
+}
+.reveal-delay-2 {
+  transition-delay: 0.2s;
+}
+.reveal-delay-3 {
+  transition-delay: 0.3s;
+}
+
+/* ---------- Custom scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f5ef;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5a46d;
+  border-radius: 10px;
+}
+
+/* ---------- Respect users who prefer less motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+  }
+}
